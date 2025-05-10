@@ -1,0 +1,4 @@
+name: raketa_initiate
+
+include:
+  - docker/compose.base.yml
