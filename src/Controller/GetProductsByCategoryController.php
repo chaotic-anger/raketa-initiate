@@ -8,27 +8,21 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Raketa\BackendTestTask\Infrastructure\Responder\JsonResponder;
 use Raketa\BackendTestTask\Infrastructure\Responder\Responder;
-use Raketa\BackendTestTask\Repository\CartManager;
-use Raketa\BackendTestTask\View\CartView;
+use Raketa\BackendTestTask\View\ProductsView;
 
-readonly class GetCartController extends DefaultController
+readonly class GetProductsByCategoryController extends DefaultController
 {
     public function __construct(
         private Responder $responder,
-        private CartManager $cartManager,
-        private CartView $cartView
+        private ProductsView $productsView
     ) {
         parent::__construct($responder);
     }
 
     public function get(RequestInterface $request): ResponseInterface
     {
-        $cart = $this->cartManager->getCart();
+        $rawRequest = json_decode($request->getBody()->getContents(), true);
 
-        if (!$cart) {
-            return $this->responder->response(['message' => 'Cart not found'], 404);
-        }
-
-        return $this->responder->response($this->cartView->toArray($cart));
+        return $this->responder->response($this->productsView->toArray($rawRequest['category']));
     }
 }
