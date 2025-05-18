@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Raketa\BackendTestTask\Domain;
+namespace Raketa\BackendTestTask\Model\Cart;
 
-final readonly class CartItem
+final readonly class Item
 {
     public function __construct(
         public string $uuid,
@@ -32,5 +32,10 @@ final readonly class CartItem
     public function getQuantity(): int
     {
         return $this->quantity;
+    }
+
+    public function getTotal(): float
+    {
+        return $this->price * $this->quantity;
     }
 }

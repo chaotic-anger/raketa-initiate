@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Raketa\BackendTestTask\Domain;
+namespace Raketa\BackendTestTask\Model\Cart;
 
 final readonly class Customer
 {
@@ -38,5 +38,10 @@ final readonly class Customer
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function getFullName(): string
+    {
+        return implode(' ', [$this->getLastName(), $this->getFirstName(), $this->getMiddleName()]);
     }
 }

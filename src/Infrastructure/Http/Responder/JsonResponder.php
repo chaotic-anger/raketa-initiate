@@ -3,17 +3,11 @@
 declare(strict_types=1);
 
 
-namespace Raketa\BackendTestTask\Infrastructure\Responder;
+namespace Raketa\BackendTestTask\Infrastructure\Http\Responder;
 
-use Raketa\BackendTestTask\Infrastructure\Responder\JsonResponse;
-use Raketa\BackendTestTask\Infrastructure\Responder\Responder;
-
-/**
- * Json-отправитель
- */
 final class JsonResponder implements Responder
 {
-    public function response(array $data, int $statusCode = 200): JsonResponse
+    public function response(mixed $data, int $statusCode = 200): JsonResponse
     {
         $response = new JsonResponse();
 
