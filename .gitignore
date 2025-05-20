@@ -4,6 +4,7 @@ composer.lock
 
 # env
 /.env*
+!.env.dist
 
 # docker
 /compose.*.yml
